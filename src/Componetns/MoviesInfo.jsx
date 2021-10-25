@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const InfoContainer = styled.div`
@@ -19,26 +20,40 @@ flex-direction:column;
 
 `
 
-function MoviesInfo() {
-    return (
-        <InfoContainer>
-            <Poster />
-            <InfoContent>
-                <span>Title:</span>
-                <span>Year:</span>
-                <span>Imdb Rating:</span>
-                <span>Released:</span>
-                <span>Runttime:</span>
-                <span>Genre:</span>
-                <span>Director:</span>
-                <span>Writer:</span>
-                <span>Actors:</span>
-                <span>Plot:</span>
+function MoviesInfo({ poster }) {
+    const details = useSelector((state) => state);
+    console.log(details);
 
-            </InfoContent>
+    return (
+
+
+        <InfoContainer>
+            {details.allDetails ? <Poster src={poster} alt="image" /> : ""}
+
+            {details.allDetails ?
+
+                <InfoContent>
+                    <span>Title:{details.allDetails.payload.Title}</span>
+                    <span>Year:{details.allDetails.payload.Year}</span>
+                    <span>Imdb Rating:{details.allDetails.payload.ImdbRating}</span>
+                    <span>Released:{details.allDetails.payload.Released}</span>
+                    <span>Runttime:{details.allDetails.payload.Runtime}</span>
+                    <span>Language:{details.allDetails.payload.Language}</span>
+                    <span>Genre:{details.allDetails.payload.Genre}</span>
+                    <span>Director:{details.allDetails.payload.Director}</span>
+                    <span>Writer:{details.allDetails.payload.Writer}</span>
+                    <span>Actors:{details.allDetails.payload.Actors}</span>
+                    <span>Plot:{details.allDetails.payload.Plot}</span>
+
+                </InfoContent>
+                : ""}
 
 
         </InfoContainer>
+
+
+
+
 
     )
 }

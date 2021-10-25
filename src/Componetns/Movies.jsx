@@ -1,6 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+
+import { select_movie } from "../Redux/actions/selection_movie";
 
 
 const Card = styled.div`
@@ -33,12 +36,13 @@ padding:10px;
 `
 
 function Movies({ title, poster, type, year, imdbID }) {
-    const [moviedata, setMovieData] = useState("");
+    const dispatch = useDispatch();
+
     async function response() {
         const res = await axios.get(`${process.env.REACT_APP_URL}?apikey=${process.env.REACT_APP_API_KEY}&i=${imdbID}`)
         if (res)
-            setMovieData(res.data);
-        console.log(res);
+            dispatch(select_movie(res.data))
+        //console.log(res);
     }
     return (
         <Card onClick={response} >

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import './App.css';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -40,8 +41,8 @@ justify-content:center;
 function App() {
   const [search, setSearch] = useState("");
   const [movie, setMovie] = useState("");
-  const [result, setResult] = useState("");
-  const [info, setInfo] = useState(false);
+  const [result, setResult] = useState();
+  const details = useSelector((state) => state);
 
 
   async function searchMovie(e) {
@@ -52,8 +53,6 @@ function App() {
       setResult(res.data.Search);
       console.log(res);
       setSearch("")
-
-
     }
   }
 
@@ -71,10 +70,16 @@ function App() {
       </Header>
 
 
+
       <MoviesContainer>
 
-        {info ? <MoviesInfo /> : ""}
+        <MoviesInfo />
+        {result && details ?
+          result.map((each) => {
+            <MoviesInfo poster={each.Poster} />
 
+          })
+          : ""}
         {result ?
           result.map((each, index) =>
             <Movies key={index}
@@ -89,6 +94,8 @@ function App() {
           "PLEASE SEARCH THE MOVIE TO GET THE DETAILS"}
 
       </MoviesContainer>
+
+
     </Container>
   );
 }
