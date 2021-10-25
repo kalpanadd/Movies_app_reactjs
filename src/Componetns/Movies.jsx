@@ -29,17 +29,29 @@ justify-content:space-between;
 padding:10px;
 `
 
-function Movies() {
-    return (
-        <Card>
-            <Poster src="https://m.media-amazon.com/images/M/MV5BMTQ3NTMxODg1Ml5BMl5BanBnXkFtZTcwMjEyMjczMQ@@._V1_SX300.jpg" />
+function Movies({ result }) {
 
+    console.log(result)
+
+
+
+
+
+
+
+    return (
+
+        <Card>
             <CardContent>
-                <span>movie name:xsds</span>
-                <span>year:1995</span>
+                {/* <Poster src={ } alt="image not found" /> */}
+                {/* <>
+                    <h2>{each.title}</h2>
+                    <span>Type:{each.type}</span>
+                    <span>year:{each.year}</span>
+                </> */}
+                hi
             </CardContent>
         </Card>
-
     )
 }
 

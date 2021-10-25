@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import axios from 'axios';
 import styled from 'styled-components';
 
 import Movies from './Componetns/Movies';
@@ -10,6 +11,7 @@ flex-direction:column;
 `
 const Header = styled.div`
 display:flex;
+flex-wrap:wrap;
 align-items:center;
 justify-content:space-around;
 background-color:black;
@@ -22,7 +24,7 @@ border:none;
 outline:none;
 cursor:pointer;
 padding:10px;
-width:30%;
+width:25rem;
 border-radius:4px;
 font-size:large;
 `
@@ -31,32 +33,44 @@ display:flex;
 flex-wrap:wrap;
 align-items:center;
 justify-content:center;
-
 `
 
 function App() {
-  const [movie, setMovie] = useState("hey");
+  const [search, setSearch] = useState("")
+  const [movie, setMovie] = useState("");
+  const [result, setResult] = useState("")
+
+  async function searchMovie(e) {
+    e.preventDefault();
+    setMovie(search);
+    const res = await axios.get(`${process.env.REACT_APP_URL}?apikey=${process.env.REACT_APP_API_KEY}&s=${movie}`)
+    if (res !== "") {
+      setResult(res.data.Search);
+      console.log(res);
+      setSearch("")
+    }
+  }
+
+
   return (
     <Container>
       <Header>
         <h1>Movies app</h1>
-        <InputBox type="search" placeholder="enter your movie"
-          onChange={(e) => setMovie(e.target.value)}
-        />
+        <form onSubmit={(e) => searchMovie(e)}>
+          <InputBox type="text" placeholder="enter your movie"
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
+          />
+        </form>
       </Header>
       <MoviesContainer>
 
-        <Movies />
-        <Movies />
-        <Movies />
-        <Movies />
-        <Movies />
-        <Movies />
-        <Movies />
-        <Movies />
-        <Movies />
-        <Movies />
-        <Movies />
+        {result !== "" ?
+          <Movies result={result}
+          />
+          :
+          "PLEASE SEARCH THE MOVIE TO GET THE DETAILS"}
+
       </MoviesContainer>
 
     </Container>
