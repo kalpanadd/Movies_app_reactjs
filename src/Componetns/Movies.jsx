@@ -14,10 +14,10 @@ background-color:pink;
 margin:20px;
 `
 const Poster = styled.img`
-background-size:cover;
-background-position: center;
-background-repeat:no-repeat;
 margin:10px;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
 
 `
 const CardContent = styled.div`
@@ -29,29 +29,19 @@ justify-content:space-between;
 padding:10px;
 `
 
-function Movies({ result }) {
-
-    console.log(result)
-
-
-
-
-
-
+function Movies({ title, poster, type, year }) {
 
     return (
-
         <Card>
+            <Poster src={poster} alt="image not found" />
+            <h2>{title}</h2>
+
             <CardContent>
-                {/* <Poster src={ } alt="image not found" /> */}
-                {/* <>
-                    <h2>{each.title}</h2>
-                    <span>Type:{each.type}</span>
-                    <span>year:{each.year}</span>
-                </> */}
-                hi
+                <span>Type:{type}</span>
+                <span>year:{year}</span>
             </CardContent>
         </Card>
+
     )
 }
 

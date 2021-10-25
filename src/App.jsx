@@ -65,9 +65,17 @@ function App() {
       </Header>
       <MoviesContainer>
 
-        {result !== "" ?
-          <Movies result={result}
-          />
+        {result ?
+          result.map((each) =>
+            <Movies
+              poster={each.Poster}
+              title={each.Title}
+              year={each.Year}
+              type={each.Type}
+            />
+
+          )
+
           :
           "PLEASE SEARCH THE MOVIE TO GET THE DETAILS"}
 
