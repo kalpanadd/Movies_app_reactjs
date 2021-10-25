@@ -4,6 +4,8 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 import Movies from './Componetns/Movies';
+import MoviesInfo from './Componetns/MoviesInfo';
+
 
 const Container = styled.div`
 display:flex;
@@ -36,9 +38,11 @@ justify-content:center;
 `
 
 function App() {
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
   const [movie, setMovie] = useState("");
-  const [result, setResult] = useState("")
+  const [result, setResult] = useState("");
+  const [info, setInfo] = useState(false);
+
 
   async function searchMovie(e) {
     e.preventDefault();
@@ -48,6 +52,8 @@ function App() {
       setResult(res.data.Search);
       console.log(res);
       setSearch("")
+
+
     }
   }
 
@@ -63,24 +69,26 @@ function App() {
           />
         </form>
       </Header>
+
+
       <MoviesContainer>
 
+        {info ? <MoviesInfo /> : ""}
+
         {result ?
-          result.map((each) =>
-            <Movies
+          result.map((each, index) =>
+            <Movies key={index}
               poster={each.Poster}
               title={each.Title}
               year={each.Year}
               type={each.Type}
+              imdbID={each.imdbID}
             />
-
           )
-
           :
           "PLEASE SEARCH THE MOVIE TO GET THE DETAILS"}
 
       </MoviesContainer>
-
     </Container>
   );
 }
