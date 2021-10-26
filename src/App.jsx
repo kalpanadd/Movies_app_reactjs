@@ -21,15 +21,21 @@ background-color:black;
 color:white;
 padding:5px;
 `
-
+const InputDiv = styled.div`
+displa:flex;
+background-color:white;
+color:black;
+border-radius:4px;
+width:25rem;
+padding:8px;
+`
 const InputBox = styled.input`
 border:none;
 outline:none;
 cursor:pointer;
-padding:8px;
-width:25rem;
-border-radius:4px;
+padding:2px;
 font-size:large;
+width:95%;
 `
 const MoviesContainer = styled.div`
 display:flex;
@@ -37,6 +43,11 @@ flex-wrap:wrap;
 align-items:center;
 justify-content:center;
 background-image:linear-gradient(to bottom red,pink,yellow);
+`
+const UserNotice = styled.div`
+display:flex;
+align-items:center;
+jusify-content:center;
 `
 
 function App() {
@@ -70,10 +81,14 @@ function App() {
         </span>
 
         <h1 style={{ cursor: "pointer" }}>Movies app</h1>
-        <InputBox type="search" placeholder="enter your movie"
-          onChange={(e) => CallApi(e)}
-          value={search}
-        />
+        <InputDiv>
+          <i class="fas fa-search"></i>
+          <InputBox type="search" placeholder="enter your movie"
+            onChange={(e) => CallApi(e)}
+            value={search}
+          />
+
+        </InputDiv>
       </Header>
       <MoviesContainer>
 
@@ -90,8 +105,9 @@ function App() {
             />
           )
           :
-          "PLEASE SEARCH THE MOVIE TO GET THE DETAILS"}
-
+          <UserNotice>
+            <h1>PLEASE SEARCH THE MOVIE TO GET THE DETAILS</h1>
+          </UserNotice>}
       </MoviesContainer>
     </Container>
   );
