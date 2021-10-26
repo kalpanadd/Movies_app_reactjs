@@ -39,11 +39,12 @@ justify-content:center;
 `
 
 function App() {
+  const details = useSelector((state) => state);
+
   const [search, setSearch] = useState("");
   const [result, setResult] = useState();
   const [timeoutId, setTimeOutId] = useState();
 
-  const details = useSelector((state) => state);
 
   function CallApi(e) {
     setSearch(e.target.value);
@@ -69,7 +70,9 @@ function App() {
         />
       </Header>
       <MoviesContainer>
-        {result && details ? <MoviesInfo /> : ""}
+
+        {details.allDetails.payload ? <MoviesInfo /> : ""}
+
         {result ?
           result.map((each, index) =>
             <Movies key={index}
