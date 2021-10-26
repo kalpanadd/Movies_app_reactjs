@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import { select_movie } from "../Redux/actions/selection_movie";
+import { select_movie, selected_poster } from "../Redux/actions/selection_movie";
 
 
 const Card = styled.div`
@@ -44,7 +44,7 @@ function Movies({ title, poster, type, year, imdbID }) {
         const res = await axios.get(`${process.env.REACT_APP_URL}?apikey=${process.env.REACT_APP_API_KEY}&i=${imdbID}`)
         if (res)
             dispatch(select_movie(res.data))
-        //console.log(res);
+        dispatch(selected_poster(poster))
     }
     return (
         <Card onClick={response} >

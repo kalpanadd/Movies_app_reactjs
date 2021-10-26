@@ -1,8 +1,7 @@
-import { SELECT_MOVIE } from "../actions/selection_movie";
+import { SELECT_MOVIE, POSTER_IMG } from "../actions/selection_movie";
 
-const initialState = ""
-// const initialtoggle = false;
-
+const initialState = "";
+const posterImg = "";
 export function Movie_reducer(state = initialState, { type, payload }) {
     switch (type) {
         case SELECT_MOVIE:
@@ -13,13 +12,14 @@ export function Movie_reducer(state = initialState, { type, payload }) {
     }
 }
 
-// export function Toggle_details(state = initialtoggle, { type, payload }) {
-//     switch (type) {
-//         case OPEN_DETAILS:
+export function Poster_reducer(state = posterImg, { type, payload }) {
+    switch (type) {
+        case POSTER_IMG:
+            return payload;
 
-//             return payload;
+        default:
+            return state;;
+    }
 
-//         default:
-//             return state;;
-//     }
-// }
+}
+

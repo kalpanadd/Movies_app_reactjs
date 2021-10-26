@@ -28,7 +28,7 @@ function MoviesInfo({ poster }) {
 
 
         <InfoContainer>
-            {details.allDetails ? <Poster src={poster} alt="image" /> : ""}
+            {details.allDetails ? <Poster src={details.poster_url} alt="image" /> : ""}
 
             {details.allDetails ?
 

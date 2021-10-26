@@ -1,6 +1,5 @@
 export const SELECT_MOVIE = "SELECT_MOVIE";
-// export const OPEN_DETAILS = "OPEN_DETAILS";
-
+export const POSTER_IMG = "POSTER_IMG";
 
 
 export function select_movie(details) {
@@ -10,9 +9,9 @@ export function select_movie(details) {
     }
 }
 
-// export function open(toggle) {
-//     return {
-//         type: OPEN_DETAILS,
-//         payload: toggle,
-//     }
-// }
+export function selected_poster(url) {
+    return {
+        type: POSTER_IMG,
+        payload: url,
+    }
+}

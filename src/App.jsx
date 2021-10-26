@@ -69,13 +69,7 @@ function App() {
         />
       </Header>
       <MoviesContainer>
-        <MoviesInfo />
-        {result && details ?
-          result.map((each) => {
-            <MoviesInfo poster={each.Poster} />
-
-          })
-          : ""}
+        {result && details ? <MoviesInfo /> : ""}
         {result ?
           result.map((each, index) =>
             <Movies key={index}
