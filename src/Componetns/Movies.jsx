@@ -24,6 +24,8 @@ margin:10px;
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
+object-fit: contain; 
+height:100%;   
 
 `
 const CardContent = styled.div`

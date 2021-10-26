@@ -40,39 +40,35 @@ justify-content:center;
 
 function App() {
   const [search, setSearch] = useState("");
-  const [movie, setMovie] = useState("");
   const [result, setResult] = useState();
+  const [timeoutId, setTimeOutId] = useState();
+
   const details = useSelector((state) => state);
 
-
-  async function searchMovie(e) {
-    e.preventDefault();
-    setMovie(search);
-    const res = await axios.get(`${process.env.REACT_APP_URL}?apikey=${process.env.REACT_APP_API_KEY}&s=${movie}`)
-    if (res !== "") {
-      setResult(res.data.Search);
-      console.log(res);
-      setSearch("")
-    }
+  function CallApi(e) {
+    setSearch(e.target.value);
+    clearTimeout(timeoutId);
+    const timeout = setTimeout(async () => {
+      const res = await axios.get(`${process.env.REACT_APP_URL}?apikey=${process.env.REACT_APP_API_KEY}&s=${e.target.value}`)
+      if (res) {
+        setResult(res.data.Search);
+        console.log(result);
+        setSearch("")
+      }
+    }, 1000)
+    setTimeOutId(timeout);
   }
-
 
   return (
     <Container>
       <Header>
         <h1>Movies app</h1>
-        <form onSubmit={(e) => searchMovie(e)}>
-          <InputBox type="text" placeholder="enter your movie"
-            onChange={(e) => setSearch(e.target.value)}
-            value={search}
-          />
-        </form>
+        <InputBox type="search" placeholder="enter your movie"
+          onChange={(e) => CallApi(e)}
+          value={search}
+        />
       </Header>
-
-
-
       <MoviesContainer>
-
         <MoviesInfo />
         {result && details ?
           result.map((each) => {
@@ -94,8 +90,6 @@ function App() {
           "PLEASE SEARCH THE MOVIE TO GET THE DETAILS"}
 
       </MoviesContainer>
-
-
     </Container>
   );
 }
