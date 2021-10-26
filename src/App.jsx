@@ -19,14 +19,14 @@ align-items:center;
 justify-content:space-around;
 background-color:black;
 color:white;
-padding:12px;
+padding:5px;
 `
 
 const InputBox = styled.input`
 border:none;
 outline:none;
 cursor:pointer;
-padding:10px;
+padding:8px;
 width:25rem;
 border-radius:4px;
 font-size:large;
@@ -36,6 +36,7 @@ display:flex;
 flex-wrap:wrap;
 align-items:center;
 justify-content:center;
+background-image:linear-gradient(to bottom red,pink,yellow);
 `
 
 function App() {
@@ -63,7 +64,12 @@ function App() {
   return (
     <Container>
       <Header>
-        <h1>Movies app</h1>
+        <span style={{ fontSize: "38px" }}>
+          <i className="fas fa-film"></i>
+
+        </span>
+
+        <h1 style={{ cursor: "pointer" }}>Movies app</h1>
         <InputBox type="search" placeholder="enter your movie"
           onChange={(e) => CallApi(e)}
           value={search}

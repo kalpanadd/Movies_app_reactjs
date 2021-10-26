@@ -9,6 +9,9 @@ background-color:pink;
 box-shadow:5px 10px 30px black;
 border-radius:10px;
 font-size:25px;
+justify-content:space-between;
+background-image: linear-gradient(to right, red ,pink,green,tomato,orange,brown);
+color:black;
 `
 
 const Poster = styled.img`
